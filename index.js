@@ -1,21 +1,24 @@
 
-import { post } from 'express'
-import { json } from 'body-parser'
-var jsonParser = json()
 
-post('/api/users', jsonParser, function (req, res) {
+
+
+const express = require('express'),
+bodyParser = require('body-parser');
+
+const app = express();
+var jsonParser = bodyParser.json()
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use(express.static('static'));
+app.set('view engine', 'pug')
+
+app.post('/api/users', jsonParser, function (req, res) {
 
 })
 
 
-/* Respond with successful resource creation, CORS enabled
-let arc = require('@architect/functions')
-exports.handler = arc.http.async (http)
-async function http (req) {
-  return {
-    statusCode: 201,
-    json: { ok: true },
-    cors: true,
-  }
-}
-*/
+let port = process.env.PORT || 4000;
+
+const server = app.listen(port, function() {
+	console.log('Listening on port ' + port);
+});
