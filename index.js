@@ -2,8 +2,9 @@
 
 
 
-const express = require('express'),
-bodyParser = require('body-parser');
+const express = require('express')
+const bodyParser = require('body-parser')
+const pug = require('pug');
 
 const app = express();
 var jsonParser = bodyParser.json()
@@ -16,6 +17,11 @@ app.post('/api/users', jsonParser, function (req, res) {
 
 })
 
+app.get('/lookup', (req, res) => {
+	res.render('userlookup', {
+	  title: 'Search Hacker News',
+	});
+  });
 
 let port = process.env.PORT || 4000;
 
