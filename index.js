@@ -1,3 +1,8 @@
+
+var app = require('express')
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()
+
 exports.handler = async function http(req) {
 
   let html = `
@@ -35,14 +40,19 @@ exports.handler = async function http(req) {
 
 // Other example responses
 
-/* Forward requester to a new path
+// Forward requester to a new path
 exports.handler = async function http (req) {
+
   return {
     statusCode: 302,
     headers: {'location': '/about'}
   }
 }
-*/
+
+app.post('/api/users', jsonParser, function (req, res) {
+
+})
+
 
 /* Respond with successful resource creation, CORS enabled
 let arc = require('@architect/functions')
